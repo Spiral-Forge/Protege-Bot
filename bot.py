@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
+from pandas import *
 
 load_dotenv()
 intents = discord.Intents.all()
@@ -10,8 +11,20 @@ client = commands.Bot(command_prefix = "!", intents = intents)
 #memberlist has the entire list of the server members
 memberlist = []
 
+def convertCSVtoList():
+    data = read_csv("protege.csv")
+    global mentors
+    mentors = data['Mentors'].tolist()
+    global mentees
+    mentees = data['Mentees'].tolist()
+
+
 def printMembers(member):
+    convertCSVtoList()
     memberlist.append(member.name+'#'+member.discriminator)
+    print(mentors)
+    print(mentees)
+
     #print(memberlist) to print the entire list
 
 
