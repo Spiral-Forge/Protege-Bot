@@ -83,6 +83,20 @@ def printMembers(member):
     memberlist.append(member.name+'#'+member.discriminator)
     print(memberlist)
 
+async def member_roles(person, role_id):
+    guild = client.get_guild(1047577694428209182)
+    #discord.guild.guild type
+    print(type(guild))
+    print(guild.roles)
+    role = discord.utils.get(guild.roles, id = role_id)
+    #discord.role.role type
+    print(type(role))
+    member = guild.get_member(person)
+    #discord.member.member type
+    print(member)
+    print(type(member))
+    await member.add_roles(role)
+
 @client.event
 async def on_ready():
       print("Server Up")
@@ -105,5 +119,13 @@ async def generateLists(ctx, *, message = None):
     convertCSVtoList()
     userListsToIDLists()
     convertToIDs()
+
+@client.command()
+async def add_roles(ctx):
+    for mem in memberids:
+        if mem in mentorids:
+            await member_roles(mem,1048824533810946048)
+        if mem in menteeids:
+            await member_roles(mem,1048843590316589066)
 
 client.run(os.getenv('TOKEN'))
