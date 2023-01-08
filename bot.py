@@ -84,7 +84,7 @@ def printMembers(member):
     print(memberlist)
 
 async def member_roles(person, role_id):
-    guild = client.get_guild(1047577694428209182)
+    guild = client.get_guild(931459573003472946)
     #discord.guild.guild type
     print(type(guild))
     print(guild.roles)
@@ -128,4 +128,19 @@ async def add_roles(ctx):
         if mem in menteeids:
             await member_roles(mem,1048843590316589066)
 
+@client.command()
+async def add_old_role(ctx):
+    count = 0
+    members = ctx.guild.members
+    for member in members: 
+        await member_roles(member.id, 1061605398089568286)
+        count=count+1
+        print(count)
+
+    print('-------------------------Done!----------------------', count)
+
 client.run(os.getenv('TOKEN'))
+
+
+
+        
