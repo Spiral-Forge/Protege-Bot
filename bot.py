@@ -126,7 +126,7 @@ async def print_roles(ctx, *, message = None):
         mentee_role.append(member.name  + '#' + member.discriminator)
     print(mentee_role) #print info
     # print(members1)
-@client.command()
+
 async def member_roles(person, role_id):
     guild = client.get_guild(1047577694428209182)
     #discord.guild.guild type
@@ -185,25 +185,23 @@ async def testCommand(ctx, *args):
     
         valuesToWrite = [
             mentor_role,
-            mentee_role,
+            
+        ]
+        valuesToWrite1 = [
+            mentee_role,   
         ]
       
         body = {
             'values': valuesToWrite
         }
-        result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="Sheet1!A1:B5").execute()
-        result2 = sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="Sheet2!A1", valueInputOption='USER_ENTERED', body=body).execute()
-        values = result.get('values', [])
+        body2 = {
+            'values': valuesToWrite1
+        }
+        
+        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="Sheet1!A1", valueInputOption='USER_ENTERED', body=body).execute()
+        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="Sheet2!A1", valueInputOption='USER_ENTERED', body=body2).execute()
 
-        if not values:
-            print('No data found.')
-        else:
-            print('Name, Major:')
-            for row in values:
-                # Print columns A and E, which correspond to indices 0 and 4.
-                print('%s, %s' % (row[0], row[1]))
-                await ctx.send(f"{row[0]} {row[1]}")
-        print(f"Arg0: {args[0]}")
+
 @client.command()
 async def add_old_role(ctx):
     count = 0
