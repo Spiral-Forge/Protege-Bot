@@ -169,15 +169,15 @@ async def generateLists(ctx, *, message = None):
 async def add_roles(ctx):
     for mem in memberids:
         if mem in mentorids:
-            await member_roles(mem,1048825107277160468)
+            await member_roles(mem,1056179807873937428)
             member_role.append(mem)
         if mem in menteeids:
-            await member_roles(mem,1048825310348583022)
+            await member_roles(mem,1056179764102176838)
             member_role.append(mem)
     print(member_role)
     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
-@client.command(name='test')
+@client.command(name='generateCSV')
 async def testCommand(ctx, *args):
     if (len(args) == 0):
         await ctx.send("Please send some arguements!")
@@ -198,8 +198,8 @@ async def testCommand(ctx, *args):
             'values': valuesToWrite1
         }
         
-        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="Sheet1!A1", valueInputOption='USER_ENTERED', body=body).execute()
-        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="Sheet2!A1", valueInputOption='USER_ENTERED', body=body2).execute()
+        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="Mentors!A1", valueInputOption='USER_ENTERED', body=body).execute()
+        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="Mentees!A1", valueInputOption='USER_ENTERED', body=body2).execute()
 
 
 @client.command()
