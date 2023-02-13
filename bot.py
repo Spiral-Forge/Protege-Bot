@@ -1,5 +1,6 @@
 import discord
 import csv
+import math
 from discord.ext import commands
 from discord.utils import get
 import os
@@ -63,12 +64,16 @@ def convertCSVtoList():
 
 
 def userListsToIDLists():
+    print('-=-=-=-=-=-=3-=-3=3-=3-=2-3=12-4=34-=12-4=32-4=12')
     for mentor in mentors:
+        print(mentor)
         mentor_disc.append(mentor[-4:])
         mentor_names.append(mentor[:-5])
+        print(mentor_names)
         
-
+    print('-=-=-=-=-=-=3-=-3=3-=3-=2-3=12-4=34-=12-4=32-4=12')
     for mentee in mentees:
+        print(mentee)
         mentee_disc.append(mentee[-4:])
         mentee_names.append(mentee[:-5])
 
@@ -86,10 +91,14 @@ def userListsToIDLists():
 
 def convertToIDs():
     for i in range(0,len(mentor_names)):
+        print(mentor_names[i], mentor_disc[i])
+        print('-----------------x-x-x-x--------------', type(discord.utils.get(client.get_all_members(), name=mentor_names[i], discriminator=mentor_disc[i])))
         id = discord.utils.get(client.get_all_members(), name=mentor_names[i], discriminator=mentor_disc[i]).id
         mentorids.append(id)
 
     for i in range(0,len(mentee_names)):
+        print(mentee_names[i], mentee_disc[i])
+        print('-----------------x-x-x-x--------------', type(discord.utils.get(client.get_all_members(), name=mentee_names[i], discriminator=mentee_disc[i])))
         id = discord.utils.get(client.get_all_members(), name=mentee_names[i], discriminator=mentee_disc[i]).id
         menteeids.append(id)
 
@@ -112,14 +121,14 @@ def printMembers(member):
 
 @client.command()
 async def print_roles(ctx, *, message = None):
-    channel = await client.fetch_channel(1048825107277160468) #gets the channel you want to get the list from
+    channel = await client.fetch_channel(1073968826993090603) #gets the channel you want to get the list from
     #print(type(channel))
     members1 = channel.members #finds members connected to the channel
     for member in members1:
         mentor_role.append(member.name  + '#' + member.discriminator)
     print(mentor_role) #print info
     # print(members1)
-    channel1 = await client.fetch_channel(1048825310348583022) #gets the channel you want to get the list from
+    channel1 = await client.fetch_channel(1073969129167519754) #gets the channel you want to get the list from
     #print(type(channel))
     members2 = channel1.members #finds members connected to the channel
     for member in members2:
@@ -128,7 +137,7 @@ async def print_roles(ctx, *, message = None):
     # print(members1)
 
 async def member_roles(person, role_id):
-    guild = client.get_guild(1047577694428209182)
+    guild = client.get_guild(931459573003472946)
     #discord.guild.guild type
     print(type(guild))
     print(guild.roles)
@@ -169,10 +178,10 @@ async def generateLists(ctx, *, message = None):
 async def add_roles(ctx):
     for mem in memberids:
         if mem in mentorids:
-            await member_roles(mem,1056179807873937428)
+            await member_roles(mem,1074350860152340573)
             member_role.append(mem)
         if mem in menteeids:
-            await member_roles(mem,1056179764102176838)
+            await member_roles(mem,1074351703014518786)
             member_role.append(mem)
     print(member_role)
     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
@@ -185,7 +194,6 @@ async def testCommand(ctx, *args):
     
         valuesToWrite = [
             mentor_role,
-            
         ]
         valuesToWrite1 = [
             mentee_role,   
